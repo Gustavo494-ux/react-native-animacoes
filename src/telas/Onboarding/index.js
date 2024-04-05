@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StatusBar, Image, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Image } from 'react-native';
 import FundoOndulado from '../../componentes/FundoOndulado';
 import { TelaDeFundo } from '../../componentes/TelaDeFundo';
 import { Formulario } from '../../componentes/Formulario';
 import itens from './cards';
 import styles from './styles';
+import { Carrossel } from '../../componentes/Carrossel';
 
 export default function Onboarding({ navigation }) {
   const [fazerLogin, setFazerLogin] = useState(false);
@@ -30,19 +31,8 @@ export default function Onboarding({ navigation }) {
 
         <View style={styles.carrosselArea}>
           {!fazerLogin && (
-            <FlatList
-              data={itens}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={item => item.id}
-              renderItem={({ item }) => (
-                <Image
-                  source={item.imagem}
-                  style={{ height: '100%', width: 150 }}
-                  resizeMode="contain"
-                />
-              )}
-            />)}
+           <Carrossel data={itens} />
+          )}
         </View>
         <Image
           source={require('../../assets/medica.png')}
